@@ -37,7 +37,7 @@ class LoggedExceptionsController < ActionController::Base
 		elsif $PAGINATION_TYPE == 'paginating_find' then
 			params[:limit] ||= 25
 			params[:page] ||= 1
-			@exceptions = LoggedException.find (:all,:order => 'created_at desc',:page => {:size => params[:limit], :current => params[:page]}, 
+			@exceptions = LoggedException.find(:all, :order => 'created_at desc', :page => {:size => params[:limit], :current => params[:page]}, 
       :conditions => conditions.empty? ? nil : parameters.unshift(conditions * ' and '))
 		else
 			#we have no pagination so do basic sql pagination
@@ -58,11 +58,11 @@ class LoggedExceptionsController < ActionController::Base
   end
   
   def show
-    @exc = LoggedException.find params[:id]
+    @exc = LoggedException.find(params[:id])
   end
   
   def destroy
-    LoggedException.destroy params[:id]
+    LoggedException.destroy(params[:id])
   end
   
   def destroy_all
